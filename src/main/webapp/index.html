@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SSE Radio - Now Playing</title>
+</head>
+<body>
+  <h2>Now Playing:</h2>
+  <div id="song">Song: </div>
+  <div id="artist">Artist: </div>
+  <script>
+    var source = new EventSource('radio/songData');
+
+    source.onmessage = function(e) {
+        var song = JSON.parse(e.data);
+        document.getElementById("song").innerHTML = 'Song: ' + song.title;
+        document.getElementById("artist").innerHTML = 'Artist: ' + song.artist;
+      };
+  </script>
+</body>
+</html>
